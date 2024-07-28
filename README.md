@@ -32,7 +32,7 @@ To run this project locally, follow these steps:
 
    ```
 ## Access the app: 
-click (https://ameychopde.github.io/health-challenge-tracker/)
+click [(https://ameychopde.github.io/health-challenge-tracker/)](https://ameychopde.github.io/health-challenge-tracker/)
 
 ## Usage
 
