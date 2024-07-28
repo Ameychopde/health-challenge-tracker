@@ -1,0 +1,48 @@
+<div class="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-md space-y-4">
+  <div class="flex space-x-4">
+    <input
+      type="text"
+      [(ngModel)]="searchName"
+      (ngModelChange)="filterUsers()"
+      placeholder="Search by Name"
+      class="mt-1 block w-1/2 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+    >
+    <select
+      [(ngModel)]="filterType"
+      (ngModelChange)="filterUsers()"
+      class="mt-1 block w-1/2 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+    >
+      <option value="">All</option>
+      <option value="Running">Running</option>
+      <option value="Cycling">Cycling</option>
+      <option value="Swimming">Swimming</option>
+      <option value="Yoga">Yoga</option>
+    </select>
+  </div>
+
+  <table class="table-auto w-full mt-6 border-collapse">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="px-4 py-2 text-left">Name</th>
+        <th class="px-4 py-2 text-left">Workout</th>
+        <th class="px-4 py-2 text-left">Number of Workouts</th>
+        <th class="px-4 py-2 text-left">Minutes</th>
+         <!-- New Column -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of paginatedUsers" class="hover:bg-gray-100">
+        <td class="border px-4 py-2">{{ user.name }}</td>
+        <td class="border px-4 py-2">{{ user.workouts[0].type }}</td>
+        <td class="border px-4 py-2">{{ user.workouts.length }}</td>
+        <td class="border px-4 py-2">{{ user.workouts[0].minutes }}</td>
+
+        <!-- New Column Data -->
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="mt-4">
+    <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="p-6 max-w-md mx-auto bg-white rounded-xl shadow-md space-y-4">
+  <form (ngSubmit)="addUser()" class="space-y-4">
+      <div>
+          <label for="userName" class="block text-sm font-medium text-gray-700">User Name</label>
+          <input
+              type="text"
+              [(ngModel)]="userName"
+              name="userName"
+              id="userName"
+              placeholder="User Name"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              required
+          >
+      </div>
+      <div>
+          <label for="workoutType" class="block text-sm font-medium text-gray-700">Workout Type</label>
+          <select
+              [(ngModel)]="workoutType"
+              name="workoutType"
+              id="workoutType"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              required
+          >
+              <option value="" disabled selected>Select a workout type</option>
+              <option value="Running">Running</option>
+              <option value="Cycling">Cycling</option>
+              <option value="Swimming">Swimming</option>
+              <option value="Yoga">Yoga</option>
+          </select>
+      </div>
+      <div>
+          <label for="workoutMinutes" class="block text-sm font-medium text-gray-700">Workout Minutes</label>
+          <input
+              type="number"
+              [(ngModel)]="workoutMinutes"
+              name="workoutMinutes"
+              id="workoutMinutes"
+              placeholder="Workout Minutes"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              required
+          >
+      </div>
+      <div>
+          <button
+              type="submit"
+              class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+              Add Workout
+          </button>
+      </div>
+  </form>
+</div>
