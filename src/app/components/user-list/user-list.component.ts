@@ -20,13 +20,13 @@ export class UserListComponent implements OnInit {
   filterType = '';
   page = 1;
   pageSize = 5;
+  pageSizeOptions = [5, 10, 15, 20];
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.users = this.userService.getUsers();
-    this.filteredUsers = this.users;
-    this.paginateUsers();
+    this.filterUsers(); // Initially filter users to setup paginatedUsers
   }
 
   filterUsers() {
