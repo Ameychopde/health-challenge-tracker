@@ -54,4 +54,12 @@ export class UserListComponent implements OnInit {
   getTotalPages(): number {
     return Math.ceil(this.filteredUsers.length / this.pageSize);
   }
+
+  getWorkoutTypes(user: User): string {
+    return user.workouts.map(w => w.type).join(', ');
+  }
+
+  getTotalMinutes(user: User): number {
+    return user.workouts.reduce((sum, workout) => sum + workout.minutes, 0);
+  }
 }

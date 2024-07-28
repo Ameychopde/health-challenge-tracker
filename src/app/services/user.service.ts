@@ -11,12 +11,6 @@ export interface User {
   workouts: Workout[];
 }
 
-interface ChartData {
-  labels: string[];
-  datasets: {
-    data: number[];
-  }[];
-}
 
 const userData: User[] = [
   {

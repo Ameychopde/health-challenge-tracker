@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './workout-progress.component.html',
   styleUrls: ['./workout-progress.component.css']
 })
-export class WorkoutProgressComponent implements OnInit {
+export class WorkoutProgressComponent implements OnInit, OnDestroy {
   chart: Chart | undefined;
   users: string[] = [];
   selectedUser: string = '';
@@ -26,6 +26,13 @@ export class WorkoutProgressComponent implements OnInit {
 
     // Create chart with default data
     this.updateChart();
+  }
+
+  ngOnDestroy() {
+    // Destroy the chart when the component is destroyed
+    if (this.chart) {
+      this.chart.destroy();
+    }
   }
 
   onUserChange(userName: string) {
@@ -60,29 +67,27 @@ export class WorkoutProgressComponent implements OnInit {
 
   createChart(labels: string[], data: number[]) {
     if (this.chart) {
-      this.chart.data.labels = labels;
-      this.chart.data.datasets[0].data = data;
-      this.chart.update();
-    } else {
-      this.chart = new Chart('workoutChart', {
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: 'Workout Minutes',
-            data: data,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            x: { beginAtZero: true },
-            y: { beginAtZero: true }
-          }
-        }
-      });
+      this.chart.destroy(); // Destroy the existing chart instance
     }
+
+    this.chart = new Chart('workoutChart', {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Workout Minutes',
+          data: data,
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          x: { beginAtZero: true },
+          y: { beginAtZero: true }
+        }
+      }
+    });
   }
 }

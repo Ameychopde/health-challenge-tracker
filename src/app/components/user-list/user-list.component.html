@@ -24,20 +24,17 @@
     <thead>
       <tr class="bg-gray-200">
         <th class="px-4 py-2 text-left">Name</th>
-        <th class="px-4 py-2 text-left">Workout</th>
+        <th class="px-4 py-2 text-left">Workout Types</th>
         <th class="px-4 py-2 text-left">Number of Workouts</th>
-        <th class="px-4 py-2 text-left">Minutes</th>
-         <!-- New Column -->
+        <th class="px-4 py-2 text-left">Total Minutes</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let user of paginatedUsers" class="hover:bg-gray-100">
         <td class="border px-4 py-2">{{ user.name }}</td>
-        <td class="border px-4 py-2">{{ user.workouts[0].type }}</td>
+        <td class="border px-4 py-2">{{ getWorkoutTypes(user) }}</td>
         <td class="border px-4 py-2">{{ user.workouts.length }}</td>
-        <td class="border px-4 py-2">{{ user.workouts[0].minutes }}</td>
-
-        <!-- New Column Data -->
+        <td class="border px-4 py-2">{{ getTotalMinutes(user) }}</td>
       </tr>
     </tbody>
   </table>
